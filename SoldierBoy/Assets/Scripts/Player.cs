@@ -6,11 +6,6 @@ public class Player : MonoBehaviour
 {
     private float playerSpeed = 8.0f;
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         float movementVertical = Input.GetAxis("Vertical");

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullets : MonoBehaviour
+public class MachineEnemy : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 12)
+        if (collision.gameObject.layer == 10)
         {
-            Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
 }
