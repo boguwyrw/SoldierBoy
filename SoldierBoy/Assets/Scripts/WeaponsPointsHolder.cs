@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponsHolder : MonoBehaviour
+public class WeaponsPointsHolder : MonoBehaviour
 {
     private int selectedWeapon = 0;
 

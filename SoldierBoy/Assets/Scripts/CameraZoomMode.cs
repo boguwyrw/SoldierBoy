@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CameraZoomMode : MonoBehaviour
 {
+
+    //private GameObject cameraObject;
     [SerializeField]
-    private GameObject cameraObject;
+    private Camera playerCamera;
 
     private Animator smallGunZoomAnim;
-    private Camera playerCamera;
     private bool cameraZoom = false;
     private float zoomSpeed = 100.0f;
     private float maxZoom = 30.0f;
@@ -17,18 +18,33 @@ public class CameraZoomMode : MonoBehaviour
     private void Start()
     {
         smallGunZoomAnim = GetComponent<Animator>();
-        playerCamera = cameraObject.GetComponent<Camera>();
+        //playerCamera = cameraObject.GetComponent<Camera>();
     }
 
     private void Update()
     {
+        ZoomAnimation();
+
+        ZoomINOutSystem();
+    }
+
+    private void ZoomAnimation()
+    {
         if (Input.GetMouseButtonDown(1))
         {
-            //smallGunZoomAnim.Play("SmallGunZoomAnimation");
             smallGunZoomAnim.SetBool("isZoomOut", false);
             smallGunZoomAnim.SetBool("isZoomIn", true);
         }
 
+        if (Input.GetMouseButtonUp(1))
+        {
+            smallGunZoomAnim.SetBool("isZoomIn", false);
+            smallGunZoomAnim.SetBool("isZoomOut", true);
+        }
+    }
+
+    private void ZoomINOutSystem()
+    {
         if (Input.GetMouseButton(1) && playerCamera.fieldOfView >= maxZoom)
         {
             playerCamera.fieldOfView -= zoomSpeed * Time.deltaTime;
@@ -37,13 +53,6 @@ public class CameraZoomMode : MonoBehaviour
         if (playerCamera.fieldOfView <= maxZoom)
         {
             cameraZoom = true;
-            //smallGunZoomAnim.SetBool("isZoomIn", false);
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            smallGunZoomAnim.SetBool("isZoomIn", false);
-            smallGunZoomAnim.SetBool("isZoomOut", true);
         }
 
         if (cameraZoom && playerCamera.fieldOfView <= minZoom)
