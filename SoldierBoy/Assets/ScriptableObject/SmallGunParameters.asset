@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SmallGunParameters
   m_EditorClassIdentifier: 
   shootingDirection: {x: 1, y: 0, z: 0}
-  bulletSpeed: 2500
+  bulletSpeed: 20
   fireRate: 0.8

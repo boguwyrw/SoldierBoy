@@ -11,14 +11,16 @@ public class GunsParameters : MonoBehaviour
     [SerializeField]
     private Rigidbody bullet;
 
-    private Vector3 bulletDirection;
     private float bulletSpeed;
     private float fireRate;
     private float nextFire;
+    private Rigidbody bulletClone;
+    private RaycastHit raycastHit;
+    private float gunsRange = 50.0f;
+    private Vector3 target;
 
     private void Start()
     {
-        bulletDirection = shootingParameters.shootingDirection;
         bulletSpeed = shootingParameters.bulletSpeed;
         fireRate = shootingParameters.fireRate;
         nextFire = Time.time;
@@ -28,10 +30,22 @@ public class GunsParameters : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && (Time.time > nextFire))
         {
-            Rigidbody bulletClone;
+            Vector3 centerPoint = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+
             bulletClone = Instantiate(bullet, bulletStartPosition.position, bullet.gameObject.transform.rotation);
-            bulletClone.velocity = transform.TransformDirection(bulletDirection * bulletSpeed * Time.deltaTime);
             nextFire = Time.time + fireRate;
+
+            if (Physics.Raycast(centerPoint, Camera.main.transform.forward, out raycastHit, gunsRange))
+            {
+                target = raycastHit.point;
+            }
+            else
+            {
+                target = centerPoint + Camera.main.transform.forward * gunsRange;
+            }
         }
+
+        if (bulletClone != null)
+            bulletClone.position = Vector3.MoveTowards(bulletClone.position, target, bulletSpeed * Time.deltaTime);
     }
 }
