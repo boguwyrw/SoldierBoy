@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachineEnemy : MonoBehaviour, IEnemy
+public class BallEnemy : MonoBehaviour, IEnemy
 {
-    private int healthPoints = 5;
+    private int healthPoints = 3;
 
     public void TakeDamage(int damageValue)
     {
         healthPoints -= damageValue;
-        if(healthPoints <= 0)
+        if (healthPoints <= 0)
         {
             gameObject.SetActive(false);
         }
@@ -20,12 +20,12 @@ public class MachineEnemy : MonoBehaviour, IEnemy
         if (collision.gameObject.layer == 9)
         {
             Destroy(collision.gameObject);
+            TakeDamage(1);
         }
 
         if (collision.gameObject.layer == 10)
         {
             Destroy(collision.gameObject);
-            TakeDamage(1);
         }
     }
 }
