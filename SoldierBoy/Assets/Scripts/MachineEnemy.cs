@@ -27,5 +27,11 @@ public class MachineEnemy : MonoBehaviour, IEnemy
             Destroy(collision.gameObject);
             TakeDamage(1);
         }
+
+        if (collision.gameObject.layer == 11)
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
     }
 }

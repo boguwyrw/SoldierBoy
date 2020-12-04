@@ -27,5 +27,11 @@ public class BallEnemy : MonoBehaviour, IEnemy
         {
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.layer == 11)
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
     }
 }
