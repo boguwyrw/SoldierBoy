@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraZoomMode : MonoBehaviour
 {
-
-    //private GameObject cameraObject;
     [SerializeField]
     private Camera playerCamera;
 
@@ -18,7 +16,6 @@ public class CameraZoomMode : MonoBehaviour
     private void Start()
     {
         smallGunZoomAnim = GetComponent<Animator>();
-        //playerCamera = cameraObject.GetComponent<Camera>();
     }
 
     private void Update()
