@@ -11,6 +11,7 @@ public class GrenadesInfo : MonoBehaviour
     private Text grenadesInfoText;
 
     private GrenadeParameters grenadeParameters;
+    private int gremadesNumber = 3;
 
     private void Start()
     {
@@ -22,7 +23,8 @@ public class GrenadesInfo : MonoBehaviour
     {
         if (grenade.activeSelf)
         {
-            if (grenadeParameters.GetNumberOfGrenades() == 0)
+            gremadesNumber = grenadeParameters.GetNumberOfGrenades();
+            if (gremadesNumber == 0)
                 grenadesInfoText.gameObject.SetActive(true);
         }
         else

@@ -12,6 +12,7 @@ public class MachineEnemy : MonoBehaviour, IEnemy
         if(healthPoints <= 0)
         {
             gameObject.SetActive(false);
+            GameController.numberOfHits++;
         }
     }
 
