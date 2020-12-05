@@ -31,7 +31,6 @@ public class MachineEnemy : MonoBehaviour, IEnemy
 
         if (collision.gameObject.layer == 11)
         {
-            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }
