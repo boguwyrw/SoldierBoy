@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
         if (isGameOver)
         {
             playerSpeed = 0.0f;
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
         else
         {
