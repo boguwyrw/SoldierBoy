@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GrenadeParameters : MonoBehaviour
 {
     [SerializeField]
-    private Rigidbody grenadeRigidbody;
+    private Rigidbody grenadeRigidbody = null;
 
     private Transform grenadeClone;
     private Vector3 target;

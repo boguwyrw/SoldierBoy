@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GrenadesInfo : MonoBehaviour
 {
     [SerializeField]
-    private GameObject grenade;
+    private GameObject grenade = null;
     [SerializeField]
-    private Text grenadesInfoText;
+    private Text grenadesInfoText = null;
 
     private GrenadeParameters grenadeParameters;
     private int gremadesNumber = 3;

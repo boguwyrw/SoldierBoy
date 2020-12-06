@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraZoomMode : MonoBehaviour
 {
     [SerializeField]
-    private Camera playerCamera;
+    private Camera playerCamera = null;
 
     private Animator smallGunZoomAnim;
     private bool cameraZoom = false;

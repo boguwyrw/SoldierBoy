@@ -5,16 +5,21 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip footstep;
+    private AudioClip footstep = null;
+    [SerializeField]
+    private GameObject gameControllerObj = null;
 
     private float playerSpeed = 8.0f;
     private AudioSource footstepAS;
     private float timeToPlaySound;
+    private GameController gameController;
+    private bool isGameOver = false;
 
     private void Start()
     {
         footstepAS = GetComponent<AudioSource>();
         timeToPlaySound = footstep.length;
+        gameController = gameControllerObj.GetComponent<GameController>();
     }
 
     private void Update()
@@ -27,7 +32,7 @@ public class Player : MonoBehaviour
         movementHorizontal *= Time.deltaTime;
         transform.Translate(new Vector3(movementHorizontal * playerSpeed, 0.0f, 0.0f));
 
-        PlayFootstepSound();
+        GameOver();
     }
 
     private void PlayFootstepSound()
@@ -42,6 +47,21 @@ public class Player : MonoBehaviour
         {
             footstepAS.PlayOneShot(footstepAS.clip);
             timeToPlaySound = footstep.length;
+        }
+    }
+
+    private void GameOver()
+    {
+        isGameOver = gameController.GetGameOver();
+
+        if (isGameOver)
+        {
+            playerSpeed = 0.0f;
+        }
+        else
+        {
+            playerSpeed = 8.0f;
+            PlayFootstepSound();
         }
     }
 }

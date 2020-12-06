@@ -5,11 +5,11 @@ using UnityEngine;
 public class GunsParameters : MonoBehaviour
 {
     [SerializeField]
-    private ShootingParameters shootingParameters;
+    private ShootingParameters shootingParameters = null;
     [SerializeField]
-    private Transform bulletStartPosition;
+    private Transform bulletStartPosition = null;
     [SerializeField]
-    private Rigidbody bullet;
+    private Rigidbody bullet = null;
 
     private float bulletSpeed;
     private float fireRate;
