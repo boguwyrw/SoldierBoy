@@ -20,6 +20,12 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
+        GameOverRestartSystem();
+        ExitGame();
+    }
+
+    private void GameOverRestartSystem()
+    {
         if (numberOfHits == targets.transform.childCount)
         {
             youWinText.gameObject.SetActive(true);
@@ -38,6 +44,12 @@ public class GameController : MonoBehaviour
             numberOfHits = 0;
             SceneManager.LoadScene("GameScene");
         }
+    }
+
+    private void ExitGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
     }
 
     public bool GetGameOver()
