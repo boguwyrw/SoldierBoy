@@ -11,12 +11,19 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private Text youWinText = null;
     [SerializeField]
+    private Text outOfRangeText = null;
+    [SerializeField]
     private Text restartText = null;
 
     private bool gameOver = false;
     private float timeToRestart = 5.0f;
 
     public static int numberOfHits;
+
+    private void Start()
+    {
+        Cursor.visible = false;
+    }
 
     private void Update()
     {
@@ -29,12 +36,12 @@ public class GameController : MonoBehaviour
         if (numberOfHits == targets.transform.childCount)
         {
             youWinText.gameObject.SetActive(true);
-            restartText.gameObject.SetActive(true);
             gameOver = true;
         }
 
         if (gameOver)
         {
+            restartText.gameObject.SetActive(true);
             restartText.text = "Restart in: " + timeToRestart.ToString("F0");
             timeToRestart -= Time.deltaTime;
         }
@@ -50,6 +57,15 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             Application.Quit();
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            outOfRangeText.gameObject.SetActive(true);
+            gameOver = true;
+        }
     }
 
     public bool GetGameOver()

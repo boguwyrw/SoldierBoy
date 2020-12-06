@@ -9,7 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject gameControllerObj = null;
 
-    private float playerSpeed = 8.0f;
+    private float playerSpeed;
+    private float playerSpeedValue = 6.0f;
     private AudioSource footstepAS;
     private float timeToPlaySound;
     private GameController gameController;
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        playerSpeed = playerSpeedValue;
         footstepAS = GetComponent<AudioSource>();
         timeToPlaySound = footstep.length;
         gameController = gameControllerObj.GetComponent<GameController>();
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            playerSpeed = 8.0f;
+            playerSpeed = playerSpeedValue;
             PlayFootstepSound();
         }
     }
