@@ -56,15 +56,15 @@ public class Player : MonoBehaviour
     {
         isGameOver = gameController.GetGameOver();
 
-        if (isGameOver)
-        {
-            playerSpeed = 0.0f;
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        }
-        else
+        if (!isGameOver)
         {
             playerSpeed = playerSpeedValue;
             PlayFootstepSound();
+        }
+        else
+        {
+            playerSpeed = 0.0f;
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
     }
 }

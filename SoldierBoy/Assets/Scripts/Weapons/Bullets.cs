@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Bullets : MonoBehaviour
 {
-    private float timeToDestroy = 3.0f;
+    private float timeToDestroy;
+    private float timeToDestroyValue = 2.0f;
+
+    private void Start()
+    {
+        timeToDestroy = timeToDestroyValue;
+    }
 
     private void Update()
     {
@@ -12,7 +18,7 @@ public class Bullets : MonoBehaviour
         if (timeToDestroy <= 0.0f)
         {
             Destroy(gameObject);
-            timeToDestroy = 3.0f;
+            timeToDestroy = timeToDestroyValue;
         }
     }
 

@@ -13,9 +13,13 @@ public class GrenadeMK2 : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 12 || collision.gameObject.layer == 13)
+        if (collision.gameObject.layer == 12 || collision.gameObject.layer == 13 || collision.gameObject.layer == 15)
         {
             explosiveParticle.SetActive(true);
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<MeshRenderer>().enabled = false;
+            }
             StartCoroutine("GrenadeEffect");
         }
     }
